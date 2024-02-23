@@ -2,3 +2,5 @@ The goal of this project is to create a list of potentially **typo squatted doma
 
 - This project is a ehanced version of https://github.com/typosquatter/ail-typo-squatting written in Java.
 - This project is still in **draft mode**
+
+![image](https://github.com/hernic/JTypoSquatting/assets/4397039/042a2ebf-2b8f-4950-b70f-e4e1717579c7)
