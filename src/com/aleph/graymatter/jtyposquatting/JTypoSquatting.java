@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import static com.aleph.graymatter.jtyposquatting.generator.Misppell.AddMisspelledDomains;
 
 public class JTypoSquatting {
-    private StringBuilder listOfDomains = new StringBuilder();
+    private final StringBuilder listOfDomains = new StringBuilder();
 
     public JTypoSquatting(String domain) throws FileNotFoundException, InvalidDomainException {
-        DomainName domainName = null;
+        DomainName domainName;
         try {
             domainName = new DomainName(domain);
         } catch (InvalidDomainException e) {
@@ -35,50 +35,25 @@ public class JTypoSquatting {
 
         ArrayList<DomainName> domainsArrayResults = new ArrayList<DomainName>();
         Homoglyph.addHomglyphedDomains(domainName,
-                domainsArrayResults,
-                false,
-                200,
-                false,
-                false,
-                false);
+                domainsArrayResults);
 
         Dash.addDash(domainName,
-                domainsArrayResults,
-                false,
-                200,
-                false,
-                false,
-                false);
+                domainsArrayResults);
         Dash.removeDash(domainName,
-                domainsArrayResults,
-                false,
-                200,
-                false,
-                false,
-                false);
+                domainsArrayResults);
 
         TLD.AddAndReplaceAllTLD(domainName,
-                domainsArrayResults,
-                false,
-                200,
-                false,
-                false,
-                false);
+                domainsArrayResults);
 
         try {
             AddMisspelledDomains(domainName,
-                    domainsArrayResults,
-                    false,
-                    200,
-                    false,
-                    false,
-                    false);
+                    domainsArrayResults);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        for (int i = 0; i < domainsArrayResults.size(); i++) {
+        for (DomainName domainsArrayResult : domainsArrayResults) {
             try {
-                listOfDomains.append(domainsArrayResults.get(i).getAsHttpsUrl().toString()).append('\n');
+                listOfDomains.append(domainsArrayResult.getAsHttpsUrl()).append('\n');
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }

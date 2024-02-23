@@ -7,7 +7,6 @@ import com.aleph.graymatter.jtyposquatting.ui.JTypoFrame;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 public class Main {
 

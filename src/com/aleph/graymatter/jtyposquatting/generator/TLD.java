@@ -13,10 +13,10 @@ public class TLD {
     private static FileReader reader;
     private static BufferedReader br;
 
-    public static void AddAndReplaceAllTLD(DomainName domainName, ArrayList<DomainName> resultList, boolean verbose, int limit, boolean giveVariations, boolean keepOriginal, boolean combo) {
+    public static void AddAndReplaceAllTLD(DomainName domainName, ArrayList<DomainName> resultList) {
         try {
-           reader = new FileReader("TLD.txt", StandardCharsets.UTF_8);
-           br = new BufferedReader(reader);
+            reader = new FileReader("TLD.txt", StandardCharsets.UTF_8);
+            br = new BufferedReader(reader);
 
             String line = br.readLine();
             if (line != null) line = br.readLine(); // jump to the second line to sweep the comment

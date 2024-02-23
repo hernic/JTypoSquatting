@@ -50,14 +50,14 @@ public class JTypoFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JTypoSquatting jTypoSquatting = null;
+        JTypoSquatting jTypoSquatting;
         try {
             jTypoSquatting = new JTypoSquatting(jTextFieldInput.getText());
         } catch (FileNotFoundException | InvalidDomainException ex) {
             this.jTextAreaConsole.setText(ex.getMessage());
             throw new RuntimeException(ex);
         }
-            jTextAreaOutput.setText("");
-            jTextAreaOutput.setText(jTypoSquatting.getListOfDomainsAsURL());
+        jTextAreaOutput.setText("");
+        jTextAreaOutput.setText(jTypoSquatting.getListOfDomainsAsURL());
     }
 }

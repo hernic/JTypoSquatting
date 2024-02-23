@@ -80,7 +80,7 @@ public final class DomainName {
     }
 
     public URI getAsHttpsUrl() throws URISyntaxException {
-        return new URI("https://" + this.toString());
+        return new URI("https://" + this);
     }
 
     public String toString() {

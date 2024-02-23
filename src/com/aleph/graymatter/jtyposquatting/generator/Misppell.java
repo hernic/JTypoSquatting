@@ -14,9 +14,9 @@ import java.util.Iterator;
 
 public class Misppell {
 
-    private static JSONParser jsonP = new JSONParser();
+    private static final JSONParser jsonP = new JSONParser();
 
-    public static void AddMisspelledDomains(DomainName domainName, ArrayList<DomainName> resultList, boolean verbose, int limit, boolean giveVariations, boolean keepOriginal, boolean combo) throws FileNotFoundException {
+    public static void AddMisspelledDomains(DomainName domainName, ArrayList<DomainName> resultList) throws FileNotFoundException {
         JSONObject jo;
         try {
             jo = (JSONObject) jsonP.parse(new FileReader("common-misspellings.json"));
@@ -29,7 +29,7 @@ public class Misppell {
 
         String validSpell = "";
         while (iterator.hasNext())
-            validSpell = (String) iterator.next().toString();
+            validSpell = iterator.next().toString();
         if (domainName.toString().contains(validSpell)) {
             //jo.
         }
