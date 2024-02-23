@@ -2,6 +2,7 @@
   <library name="guava-33.0.0-jre">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/guava-33.0.0-jre.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-simple-1.1.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

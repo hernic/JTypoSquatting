@@ -3,6 +3,14 @@ package com.aleph.graymatter.jtyposquatting.constants;
 import java.util.HashMap;
 
 public final class Const {
+
+    public static final HashMap<Character, String[]> NUMERAL = new HashMap<Character, String[]>();
+    public static final String[] ALGO_NAME_LIST = {"omission", "repetition", "changeOrder", "replacement", "doubleReplacement",
+            "addition", "missingDot", "stripDash", "vowelSwap", "addDash", "homoglyph",
+            "commonMisspelling", "homophones", "wrongTld", "addTld", "subdomain",
+            "singularPluralize", "changeDotDash", "wrongSld", "numeralSwap", "addDynamicDns"};
+    public static final String[] EXCLUDED_TLD = {"gouv.fr"}; //for example
+    public static final HashMap<Character, String[]> SIMILAR_CHAR = new HashMap<Character, String[]>();
     private static final String[] A = {"à", "á", "à", "â", "ã", "ä", "å", "ɑ", "ạ", "ǎ", "ă", "ȧ", "ą", "ə"};
     private static final String[] B = {"d", "ʙ", "ɓ", "ḃ", "ḅ", "ḇ", "ƅ"};
     private static final String[] C = {"e", "ƈ", "ċ", "ć", "ç", "č", "ĉ", "ᴄ"};
@@ -30,16 +38,7 @@ public final class Const {
     private static final String[] Y = {"ʏ", "ý", "ÿ", "ŷ", "ƴ", "ȳ", "ɏ", "ỿ", "ẏ", "ỵ"};
     private static final String[] Z = {"ʐ", "ż", "ź", "ᴢ", "ƶ", "ẓ", "ẕ", "ⱬ"};
 
-    public static final HashMap<Character, String[]> SIMILAR_CHAR = new HashMap<Character,String[]>();
-    public static final HashMap<Character, String[]> NUMERAL = new HashMap<Character,String[]>();
-    public static final String[] ALGO_NAME_LIST={ "omission", "repetition", "changeOrder", "replacement", "doubleReplacement",
-            "addition", "missingDot", "stripDash", "vowelSwap", "addDash", "homoglyph",
-            "commonMisspelling", "homophones", "wrongTld", "addTld", "subdomain",
-            "singularPluralize", "changeDotDash", "wrongSld", "numeralSwap", "addDynamicDns"};
-
-    public static final  String[] EXCLUDED_TLD =  {"gouv.fr"}; //for example
-
-    private Const() {
+    static {
         SIMILAR_CHAR.put('0', new String[]{"o"});
         SIMILAR_CHAR.put('1', new String[]{"l", "i", "ı"});
         SIMILAR_CHAR.put('2', new String[]{"ƻ"});
@@ -71,16 +70,18 @@ public final class Const {
         SIMILAR_CHAR.put('y', Y);
         SIMILAR_CHAR.put('z', Z);
 
-        NUMERAL.put('0', new String[]{"zero"} );
-        NUMERAL.put('1', new String[]{"one","first"} );
-        NUMERAL.put('2', new String[]{"two","second"} );
-        NUMERAL.put('3', new String[]{"three","third"} );
-        NUMERAL.put('4', new String[]{"four","fourth","for"} );
-        NUMERAL.put('5', new String[]{"five","fifth"} );
-        NUMERAL.put('6', new String[]{"six","sixth"} );
-        NUMERAL.put('7', new String[]{"seven","seventh"} );
-        NUMERAL.put('8', new String[]{"eight","eighth"} );
-        NUMERAL.put('9', new String[]{"nine","ninth"} );
+        NUMERAL.put('0', new String[]{"zero"});
+        NUMERAL.put('1', new String[]{"one", "first"});
+        NUMERAL.put('2', new String[]{"two", "second"});
+        NUMERAL.put('3', new String[]{"three", "third"});
+        NUMERAL.put('4', new String[]{"four", "fourth", "for"});
+        NUMERAL.put('5', new String[]{"five", "fifth"});
+        NUMERAL.put('6', new String[]{"six", "sixth"});
+        NUMERAL.put('7', new String[]{"seven", "seventh"});
+        NUMERAL.put('8', new String[]{"eight", "eighth"});
+        NUMERAL.put('9', new String[]{"nine", "ninth"});
     }
 
+    private Const() {
+    }
 }
