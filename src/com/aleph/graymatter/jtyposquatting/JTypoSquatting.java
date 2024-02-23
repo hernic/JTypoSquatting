@@ -4,19 +4,22 @@ import com.aleph.graymatter.jtyposquatting.generator.Dash;
 import com.aleph.graymatter.jtyposquatting.generator.Homoglyph;
 import com.aleph.graymatter.jtyposquatting.generator.TLD;
 import com.aleph.graymatter.jtyposquatting.net.DomainName;
+import com.aleph.graymatter.jtyposquatting.ui.JTypoFrame;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+/* comment for 1.8 binary compatibility */
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-import static com.aleph.graymatter.jtyposquatting.generator.Misppell.AddMisspelledDomains;
+//import static com.aleph.graymatter.jtyposquatting.generator.Misppell.AddMisspelledDomains;
 
 public class JTypoSquatting {
     private final StringBuilder listOfDomains = new StringBuilder();
@@ -29,8 +32,7 @@ public class JTypoSquatting {
             throw new RuntimeException(e);
         }
 
-
-        UpdateDDNSList();
+        //UpdateDDNSList();
         UpdateTLDList();
 
         ArrayList<DomainName> domainsArrayResults = new ArrayList<DomainName>();
@@ -45,12 +47,11 @@ public class JTypoSquatting {
         TLD.AddAndReplaceAllTLD(domainName,
                 domainsArrayResults);
 
-        try {
-            AddMisspelledDomains(domainName,
-                    domainsArrayResults);
+     /*   try {
+            AddMisspelledDomains(domainName, domainsArrayResults);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         for (DomainName domainsArrayResult : domainsArrayResults) {
             try {
                 listOfDomains.append(domainsArrayResult.getAsHttpsUrl()).append('\n');
@@ -108,5 +109,10 @@ public class JTypoSquatting {
 
     public String getListOfDomainsAsURL() {
         return listOfDomains.toString();
+    }
+
+    public static void main(String[] args) throws InvalidDomainException, URISyntaxException, FileNotFoundException {
+        JTypoFrame jTypoFrame = new JTypoFrame();
+        jTypoFrame.setVisible(true);
     }
 }

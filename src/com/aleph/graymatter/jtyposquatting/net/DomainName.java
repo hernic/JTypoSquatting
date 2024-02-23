@@ -24,12 +24,24 @@ public final class DomainName {
         }
     }
 
+    public static boolean haveSubDomain(final String domain) {
+        return (domain.indexOf(".")) != (domain.lastIndexOf("."));
+    }
+
+    public boolean haveSubDomain() {
+        return !subDomain.isEmpty();
+    }
+
     public static String getSubDomain(final String domain) {
-        StringBuilder sb = new StringBuilder(DomainName.getDomainWithoutTLD(domain));
-        int idx = sb.lastIndexOf(".");
-        if (idx != -1)
-            sb.delete(idx, sb.length());
-        return sb.toString();
+        if (DomainName.haveSubDomain(domain)) {
+            StringBuilder sb = new StringBuilder(DomainName.getDomainWithoutTLD(domain));
+            int idx = sb.lastIndexOf(".");
+            if (idx != -1)
+                sb.delete(idx, sb.length());
+            return sb.toString();
+        } else {
+            return "";
+        }
     }
 
     public static String getDomainWithoutSubDomainMinusTLD(final String domain) {
