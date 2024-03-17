@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-
-/* comment for 1.8 binary compatibility */
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -111,6 +109,9 @@ public class JTypoSquatting {
         return listOfDomains.toString();
     }
 
+    public String getNumberOfDomains() {
+        return Integer.toString(listOfDomains.length());
+    }
     public static void main(String[] args) throws InvalidDomainException, URISyntaxException, FileNotFoundException {
         JTypoFrame jTypoFrame = new JTypoFrame();
         jTypoFrame.setVisible(true);

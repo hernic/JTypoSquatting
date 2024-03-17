@@ -5,9 +5,6 @@ import com.google.common.net.InternetDomainName;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public final class DomainName {
     private final String subDomain;
@@ -69,14 +66,7 @@ public final class DomainName {
     }
 
     public static String getSuffix(String domain) {
-        if (InternetDomainName.from(domain).registrySuffix() == null) {
-            StringBuilder notValid = new StringBuilder(domain);
-            Logger logger = Logger.getAnonymousLogger();
-            logger.log(Level.INFO, domain + " is not a valid TLD for google InternetDomainName Class");
-            return notValid.substring(notValid.lastIndexOf(".") + 1);
-        } else {
-            return Objects.requireNonNull(InternetDomainName.from(domain).registrySuffix()).toString();
-        }
+            return domain.substring(domain.lastIndexOf(".") + 1);
     }
 
     public String getSubDomain() {
