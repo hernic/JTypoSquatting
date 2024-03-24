@@ -8,3 +8,8 @@ The goal of this project is to create a list of potentially **typo squatted doma
 
 Requirments:
 - JTypoSquatting needs Java 21 to be executed : https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe
+
+Usage:
+```
+java -jar JTypoSquatting
+```
