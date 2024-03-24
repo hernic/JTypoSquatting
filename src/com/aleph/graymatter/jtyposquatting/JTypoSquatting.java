@@ -17,6 +17,8 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import static javax.imageio.ImageIO.read;
+
 //import static com.aleph.graymatter.jtyposquatting.generator.Misppell.AddMisspelledDomains;
 
 public class JTypoSquatting {
@@ -114,7 +116,7 @@ public class JTypoSquatting {
     public String getNumberOfDomains() {
         return Integer.toString(listOfDomains.length());
     }
-    public static void main(String[] args) throws InvalidDomainException, URISyntaxException, FileNotFoundException {
+    public static void main(String[] args) throws InvalidDomainException, URISyntaxException, IOException {
         JTypoFrame jTypoFrame = new JTypoFrame();
         jTypoFrame.setVisible(true);
     }
