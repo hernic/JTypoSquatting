@@ -31,7 +31,7 @@ public class Misppell {
         while (iterator.hasNext())
             validSpell = iterator.next().toString();
         if (domainName.toString().contains(validSpell)) {
-            //jo.
+            //TODO : implements and find some other misspells per country
         }
 
     }
