@@ -7,7 +7,7 @@ The goal of this project is to create a list of potentially **typo squatted doma
 ![image](https://github.com/hernic/JTypoSquatting/assets/4397039/042a2ebf-2b8f-4950-b70f-e4e1717579c7)
 
 Requirments:
-- JTypoSquatting needs Java 21 to be executed : https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe
+- JTypoSquatting needs Java 21 to be installed : https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe
 
 Usage:
 ```
