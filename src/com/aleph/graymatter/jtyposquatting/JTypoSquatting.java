@@ -60,6 +60,7 @@ public class JTypoSquatting {
     }
 
     private static void UpdateDDNSList() {
+        //TODO : secure file upload update
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://raw.githubusercontent.com/MISP/misp-warninglists/main/lists/dynamic-dns/list.json"))
@@ -83,7 +84,7 @@ public class JTypoSquatting {
     }
 
     private static void UpdateTLDList() {
-        // TODO secure file updload/update
+        // TODO : secure file updload/update
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://data.iana.org/TLD/tlds-alpha-by-domain.txt"))
