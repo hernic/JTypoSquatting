@@ -83,6 +83,7 @@ public class JTypoSquatting {
     }
 
     private static void UpdateTLDList() {
+        // TODO secure file updload/update
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://data.iana.org/TLD/tlds-alpha-by-domain.txt"))
