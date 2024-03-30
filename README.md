@@ -6,10 +6,16 @@ The goal of this project is to create a list of potentially **typo squatted doma
 
 ![image](https://github.com/hernic/JTypoSquatting/assets/4397039/042a2ebf-2b8f-4950-b70f-e4e1717579c7)
 
-Requirments:
+Requirements:
 - JTypoSquatting needs Java 21 to be installed : https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe
 
 Usage:
 ```
 java -jar JTypoSquatting
 ```
+
+Algorithms:
+- Dash : adding, removing and moving Dash in the domain name (www.aleph-networks.eu > www.alephnetworks.eu)
+- Homoglyphs : replacing characters which as visually similar to others ones (www.aleph-networks.eu > www.αleph-networks.eu)
+- Misspells : replacing well spelled word with misspelled ones (english only) (www.absence.com > www.absense.com) 
+- TLD : changing TLD, and adding TLD to the domain name. This create company name as a subdomain (www.aleph_networks.eu > www.aleph-networks.fr or www.aleph-networks.eu > www.aleph-networks.eu.com). 
