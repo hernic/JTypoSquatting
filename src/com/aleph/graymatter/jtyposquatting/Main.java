@@ -6,11 +6,12 @@ package com.aleph.graymatter.jtyposquatting;
 import com.aleph.graymatter.jtyposquatting.ui.JTypoFrame;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Main {
 
-    public static void main(String[] args) throws InvalidDomainException, URISyntaxException, FileNotFoundException {
+    public static void main(String[] args) throws InvalidDomainException, URISyntaxException, IOException {
         JTypoFrame jTypoFrame = new JTypoFrame();
         jTypoFrame.setVisible(true);
     }

@@ -2,6 +2,7 @@ package com.aleph.graymatter.jtyposquatting;
 
 import com.aleph.graymatter.jtyposquatting.generator.Dash;
 import com.aleph.graymatter.jtyposquatting.generator.Homoglyph;
+import com.aleph.graymatter.jtyposquatting.generator.Misppell;
 import com.aleph.graymatter.jtyposquatting.generator.TLD;
 import com.aleph.graymatter.jtyposquatting.net.DomainName;
 import com.aleph.graymatter.jtyposquatting.ui.JTypoFrame;
@@ -36,6 +37,9 @@ public class JTypoSquatting {
         UpdateTLDList();
 
         ArrayList<DomainName> domainsArrayResults = new ArrayList<DomainName>();
+
+        Misppell.AddMisspelledDomains(domainName, domainsArrayResults);
+
         Homoglyph.addHomglyphedDomains(domainName,
                 domainsArrayResults);
 
