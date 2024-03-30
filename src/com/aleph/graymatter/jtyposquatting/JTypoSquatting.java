@@ -2,7 +2,7 @@ package com.aleph.graymatter.jtyposquatting;
 
 import com.aleph.graymatter.jtyposquatting.generator.Dash;
 import com.aleph.graymatter.jtyposquatting.generator.Homoglyph;
-import com.aleph.graymatter.jtyposquatting.generator.Misppell;
+import com.aleph.graymatter.jtyposquatting.generator.Misspell;
 import com.aleph.graymatter.jtyposquatting.generator.TLD;
 import com.aleph.graymatter.jtyposquatting.net.DomainName;
 import com.aleph.graymatter.jtyposquatting.ui.JTypoFrame;
@@ -18,7 +18,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-//import static com.aleph.graymatter.jtyposquatting.generator.Misppell.AddMisspelledDomains;
+//import static com.aleph.graymatter.jtyposquatting.generator.Misspell.AddMisspelledDomains;
 
 public class JTypoSquatting {
     private final StringBuilder listOfDomains = new StringBuilder();
@@ -36,7 +36,7 @@ public class JTypoSquatting {
 
         ArrayList<DomainName> domainsArrayResults = new ArrayList<DomainName>();
 
-        Misppell.AddMisspelledDomains(domainName, domainsArrayResults);
+        Misspell.AddMisspelledDomains(domainName, domainsArrayResults);
 
         Homoglyph.addHomglyphedDomains(domainName,
                 domainsArrayResults);

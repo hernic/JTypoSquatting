@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Misppell {
+public class Misspell {
 
     private static final JSONParser jsonP = new JSONParser();
 
