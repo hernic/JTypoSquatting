@@ -25,10 +25,6 @@ public final class DomainName {
         return (domain.indexOf(".")) != (domain.lastIndexOf("."));
     }
 
-    public boolean haveSubDomain() {
-        return !subDomain.isEmpty();
-    }
-
     public static String getSubDomain(final String domain) {
         if (DomainName.haveSubDomain(domain)) {
             StringBuilder sb = new StringBuilder(DomainName.getDomainWithoutTLD(domain));
@@ -66,7 +62,11 @@ public final class DomainName {
     }
 
     public static String getSuffix(String domain) {
-            return domain.substring(domain.lastIndexOf(".") + 1);
+        return domain.substring(domain.lastIndexOf(".") + 1);
+    }
+
+    public boolean haveSubDomain() {
+        return !subDomain.isEmpty();
     }
 
     public String getSubDomain() {

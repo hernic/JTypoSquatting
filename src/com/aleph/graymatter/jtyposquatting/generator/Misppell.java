@@ -32,15 +32,15 @@ public class Misppell {
         while (iterator.hasNext()) {
             validSpell = iterator.next();
 
-                if (domainName.toString().contains(validSpell)) {
-                    //TODO : implements and find some other misspells per country
-                    System.out.println(domainName + " could be " + jo.get(validSpell));
-                    String missSpelledDomain = domainName.toString();
-                    missSpelledDomain = missSpelledDomain.replace((CharSequence) validSpell, (CharSequence) jo.get(validSpell));
+            if (domainName.toString().contains(validSpell)) {
+                //TODO : implements and find some other misspells per country
+                System.out.println(domainName + " could be " + jo.get(validSpell));
+                String missSpelledDomain = domainName.toString();
+                missSpelledDomain = missSpelledDomain.replace((CharSequence) validSpell, (CharSequence) jo.get(validSpell));
 
-                    resultList.add(new DomainName(missSpelledDomain));
-                }
+                resultList.add(new DomainName(missSpelledDomain));
             }
-
         }
+
     }
+}

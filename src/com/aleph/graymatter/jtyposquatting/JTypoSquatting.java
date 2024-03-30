@@ -111,15 +111,16 @@ public class JTypoSquatting {
         }
     }
 
+    public static void main(String[] args) throws InvalidDomainException, URISyntaxException, IOException {
+        JTypoFrame jTypoFrame = new JTypoFrame();
+        jTypoFrame.setVisible(true);
+    }
+
     public String getListOfDomainsAsURL() {
         return listOfDomains.toString();
     }
 
     public String getNumberOfDomains() {
         return Integer.toString(listOfDomains.length());
-    }
-    public static void main(String[] args) throws InvalidDomainException, URISyntaxException, IOException {
-        JTypoFrame jTypoFrame = new JTypoFrame();
-        jTypoFrame.setVisible(true);
     }
 }

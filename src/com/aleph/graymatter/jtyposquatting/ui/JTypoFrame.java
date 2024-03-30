@@ -55,10 +55,10 @@ public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
         add(contentPanel, BorderLayout.CENTER);
         add(jTextFieldInput, BorderLayout.NORTH);
         add(jButton, BorderLayout.SOUTH);
-        add(numberLabel,BorderLayout.WEST);
+        add(numberLabel, BorderLayout.WEST);
         super.addKeyListener(this);
         pack();
-         }
+    }
 
 
     private void validateAction() {
@@ -85,10 +85,11 @@ public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             validateAction();
         }
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
 
