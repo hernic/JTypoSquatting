@@ -18,8 +18,6 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-import static javax.imageio.ImageIO.read;
-
 //import static com.aleph.graymatter.jtyposquatting.generator.Misppell.AddMisspelledDomains;
 
 public class JTypoSquatting {

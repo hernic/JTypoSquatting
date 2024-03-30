@@ -5,7 +5,6 @@ package com.aleph.graymatter.jtyposquatting;
 
 import com.aleph.graymatter.jtyposquatting.ui.JTypoFrame;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
