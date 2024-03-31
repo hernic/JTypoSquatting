@@ -37,15 +37,12 @@ public class JTypoSquatting {
         ArrayList<DomainName> domainsArrayResults = new ArrayList<DomainName>();
 
         Misspell.AddMisspelledDomains(domainName, domainsArrayResults);
-
         Homoglyph.addHomglyphedDomains(domainName,
                 domainsArrayResults);
-
         Dash.addDash(domainName,
                 domainsArrayResults);
         Dash.removeDash(domainName,
                 domainsArrayResults);
-
         TLD.AddAndReplaceAllTLD(domainName,
                 domainsArrayResults);
 
