@@ -10,7 +10,7 @@ ask for an access here : https://www.aleph-networks.eu/en/contact/
 
 Requirements:
 
-- JTypoSquatting needs Java 21 to be installed : https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe
+- on Windows JTypoSquatting needs Java 21 (or 11) to be runned : https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe
 
 Usage:
 
