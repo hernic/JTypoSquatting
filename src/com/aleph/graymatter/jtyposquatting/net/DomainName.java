@@ -40,8 +40,8 @@ public final class DomainName {
     public static String getDomainWithoutSubDomainMinusTLD(final String domain) {
         StringBuilder sb = new StringBuilder(getDomainWithoutSubDomain(domain));
         String suffix = getSuffix(domain);
-        int start = sb.indexOf(suffix) - 1;
-        int end = sb.indexOf(suffix) - 1 + suffix.length() + 1;
+        int start = sb.lastIndexOf(suffix) - 1;
+        int end = sb.lastIndexOf(suffix) - 1 + suffix.length() + 1;
         sb.delete(start, end);
         return sb.toString();
     }
