@@ -23,7 +23,7 @@ public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
     private final JLabel numberLabel;
 
     public JTypoFrame() throws IOException {
-        setIconImage(read(new File("aleph_sg.jpg")));
+        //setIconImage(read(new File("aleph_sg.jpg")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Aleph TypoSquatting Tool");
