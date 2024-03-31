@@ -37,7 +37,6 @@ public class Misspell {
 
             if (DomainName.getDomainWithoutTLD(domainName.toString()).contains(key)) {
                 //TODO : implements and find some other misspells per country
-                System.out.println(domainName + " could be " + jo.get(key));
                 String missSpelledDomainWithoutTLD = DomainName.getDomainWithoutTLD(domainName.toString());
                 missSpelledDomainWithoutTLD = missSpelledDomainWithoutTLD.replace((CharSequence) key, (CharSequence) jo.get(key));
 
