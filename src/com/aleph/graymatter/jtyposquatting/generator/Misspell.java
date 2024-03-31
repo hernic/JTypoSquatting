@@ -26,7 +26,7 @@ public class Misspell {
             throw new RuntimeException(e);
         }
 
-        Set<String> keySet = jo.keySet();
+        Set<String> keySet = (Set<String>) jo.keySet();
         Iterator<String> iterator = keySet.iterator();
 
         String key;
@@ -38,9 +38,9 @@ public class Misspell {
             if (DomainName.getDomainWithoutTLD(domainName.toString()).contains(key)) {
                 //TODO : implements and find some other misspells per country
                 String missSpelledDomainWithoutTLD = DomainName.getDomainWithoutTLD(domainName.toString());
-                missSpelledDomainWithoutTLD = missSpelledDomainWithoutTLD.replace((CharSequence) key, (CharSequence) jo.get(key));
+                missSpelledDomainWithoutTLD = missSpelledDomainWithoutTLD.replace(key, (CharSequence) jo.get(key));
 
-                resultList.add(new DomainName(missSpelledDomainWithoutTLD+'.'+TLD));
+                resultList.add(new DomainName(missSpelledDomainWithoutTLD + '.' + TLD));
             }
         }
 
