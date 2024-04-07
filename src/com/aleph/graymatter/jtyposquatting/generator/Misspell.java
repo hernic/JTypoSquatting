@@ -21,7 +21,7 @@ public class Misspell {
     public static void AddMisspelledDomains(DomainName domainName, ArrayList<DomainName> resultList) throws FileNotFoundException, InvalidDomainException {
         JSONObject jo;
         try {
-            jo = JSonUtils.KeysValuesSwap((JSONObject) jsonP.parse(new FileReader("common-misspellings.json")));
+            jo = JSonUtils.KeysValuesSwap((JSONObject) jsonP.parse(new FileReader("res/common-misspellings.json")));
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }

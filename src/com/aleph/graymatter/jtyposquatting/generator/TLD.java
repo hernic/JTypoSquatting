@@ -15,7 +15,7 @@ public class TLD {
 
     public static void AddAndReplaceAllTLD(DomainName domainName, ArrayList<DomainName> resultList) {
         try {
-            reader = new FileReader("TLD.txt", StandardCharsets.UTF_8);
+            reader = new FileReader("res/TLD.txt", StandardCharsets.UTF_8);
             br = new BufferedReader(reader);
 
             String line = br.readLine();
