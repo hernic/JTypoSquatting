@@ -72,7 +72,7 @@ public class JTypoSquatting {
         }
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter("res/dynamic-dns.json", StandardCharsets.UTF_8);
+            writer = new PrintWriter("dynamic-dns.json", StandardCharsets.UTF_8);
             writer.print(response.body());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -96,7 +96,7 @@ public class JTypoSquatting {
         }
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter("res/TLD.txt", StandardCharsets.UTF_8);
+            writer = new PrintWriter("TLD.txt", StandardCharsets.UTF_8);
             writer.print(response.body());
         } catch (IOException e) {
             throw new RuntimeException(e);
