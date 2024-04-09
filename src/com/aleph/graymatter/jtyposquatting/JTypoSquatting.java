@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class JTypoSquatting {
-    private final StringBuilder listOfDomains = new StringBuilder();
+    private final ArrayList<String> listOfDomains = new ArrayList<String>();
 
     public JTypoSquatting(String domain) throws FileNotFoundException, InvalidDomainException {
         DomainName domainName;
@@ -51,7 +51,7 @@ public class JTypoSquatting {
         }*/
         for (DomainName domainsArrayResult : domainsArrayResults) {
             try {
-                listOfDomains.append(domainsArrayResult.getAsHttpsUrl()).append('\n');
+                listOfDomains.add(domainsArrayResult.getAsHttpsUrl().toString());
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
@@ -116,6 +116,7 @@ public class JTypoSquatting {
     }
 
     public String getNumberOfDomains() {
-        return Integer.toString(listOfDomains.length());
+        listOfDomains.trimToSize();
+        return Integer.toString(listOfDomains.size());
     }
 }
