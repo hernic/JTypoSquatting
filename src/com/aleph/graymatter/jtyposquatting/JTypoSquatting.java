@@ -30,7 +30,12 @@ public class JTypoSquatting {
         }
 
         //UpdateDDNSList();
-        UpdateTLDList();
+        try {
+            UpdateTLDList();
+        }
+        catch(IOException ioe) {
+            System.err.println(ioe);
+        }
 
         ArrayList<DomainName> domainsArrayResults = new ArrayList<DomainName>();
 
@@ -82,7 +87,7 @@ public class JTypoSquatting {
         }
     }
 
-    private static void UpdateTLDList() {
+    private static void UpdateTLDList() throws RuntimeException, IOException {
         // TODO : secure file updload/update
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -98,8 +103,6 @@ public class JTypoSquatting {
         try {
             writer = new PrintWriter("TLD.txt", StandardCharsets.UTF_8);
             writer.print(response.body());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             assert writer != null;
             writer.close();
@@ -112,7 +115,14 @@ public class JTypoSquatting {
     }
 
     public String getListOfDomainsAsURL() {
-        return listOfDomains.toString();
+        StringBuilder listOfDomainsAsString = new StringBuilder();
+        listOfDomains.trimToSize();
+
+        for (int i=0;i<listOfDomains.size();i++)
+        {
+            listOfDomainsAsString.append(listOfDomains.get(i)+'\n');
+        }
+        return listOfDomainsAsString.toString();
     }
 
     public String getNumberOfDomains() {
