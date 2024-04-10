@@ -12,7 +12,7 @@ public final class DomainName {
     private final String TLD;
 
     public DomainName(String domainName) throws InvalidDomainException {
-        if (!InternetDomainName.isValid(domainName)) {
+        if (!InternetDomainName.isValid(domainName) || domainName.indexOf('.')==-1) {
             throw new InvalidDomainException(domainName + " is not valid");
         } else {
             subDomain = getSubDomain(domainName);
