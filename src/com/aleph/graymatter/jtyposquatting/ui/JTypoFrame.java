@@ -29,18 +29,18 @@ public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
         setTitle("Aleph TypoSquatting Tool");
         setMinimumSize(new Dimension(1024, 768));
 
-        this.jTextFieldInput = new JTextField();
+        this.jTextFieldInput = new JTextField("www.aleph-networks.eu");
 
         JButton jButton = new JButton("OK");
         jButton.addActionListener(this);
-        numberLabel = new JLabel();
+        numberLabel = new JLabel("0");
 
         this.jTextAreaOutput = new JTextArea();
         jTextAreaOutput.setText("");
         jTextAreaOutput.setAutoscrolls(true);
 
         this.jTextAreaConsole = new JTextArea();
-        jTextAreaConsole.setText("");
+        jTextAreaConsole.setText("console");
         jTextAreaConsole.setAutoscrolls(true);
 
 
@@ -65,10 +65,15 @@ public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
         JTypoSquatting jTypoSquatting;
         try {
             jTypoSquatting = new JTypoSquatting(jTextFieldInput.getText());
-        } catch (FileNotFoundException | InvalidDomainException ex) {
-            this.jTextAreaConsole.setText(ex.getMessage());
-            throw new RuntimeException(ex);
+        } catch (FileNotFoundException | InvalidDomainException exception) {
+            if (exception.getClass().toString().equals("java.io.FileNotFoundException")) {
+                this.jTextAreaConsole.setText("some files are missing");
+            } else {
+                this.jTextAreaConsole.setText("invalid domain name");
+            }
+            throw new RuntimeException(exception);
         }
+
         jTextAreaOutput.setText("");
         jTextAreaOutput.setText(jTypoSquatting.getListOfDomainsAsURL());
         numberLabel.setText(jTypoSquatting.getNumberOfDomains());
