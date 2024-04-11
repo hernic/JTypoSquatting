@@ -1,8 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="JTypoSquatting:jar">
-    <output-path>$PROJECT_DIR$/out</output-path>
+  <artifact type="jar" name="JTypoSquatting:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JTypoSquatting_jar</output-path>
     <root id="archive" name="JTypoSquatting.jar">
       <element id="module-output" name="JTypoSquatting" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-33.1.0-jre.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-simple-1.1.1.jar" path-in-jar="/" />
     </root>
   </artifact>

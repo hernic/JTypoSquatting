@@ -40,7 +40,6 @@ public class TLD {
                 br.close();
                 reader.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         }
     }

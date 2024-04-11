@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class Misspell {
 
     private static final JSONParser jsonP = new JSONParser();
 
-    public static void AddMisspelledDomains(DomainName domainName, ArrayList<DomainName> resultList) throws FileNotFoundException, InvalidDomainException {
+    public static void AddMisspelledDomains(DomainName domainName, ArrayList<DomainName> resultList) throws InvalidDomainException {
         JSONObject jo;
         try {
             jo = JSonUtils.KeysValuesSwap((JSONObject) jsonP.parse(new FileReader("common-misspellings.json")));

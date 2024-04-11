@@ -18,21 +18,24 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-//import static com.aleph.graymatter.jtyposquatting.generator.Misspell.AddMisspelledDomains;
-
 public class JTypoSquatting {
-    private final StringBuilder listOfDomains = new StringBuilder();
+    private final ArrayList<String> listOfDomains = new ArrayList<String>();
 
     public JTypoSquatting(String domain) throws FileNotFoundException, InvalidDomainException {
         DomainName domainName;
         try {
             domainName = new DomainName(domain);
         } catch (InvalidDomainException e) {
-            throw new RuntimeException(e);
+            throw e;
         }
 
         //UpdateDDNSList();
-        UpdateTLDList();
+        try {
+            UpdateTLDList();
+        }
+        catch(IOException ioe) {
+            System.err.println(ioe);
+        }
 
         ArrayList<DomainName> domainsArrayResults = new ArrayList<DomainName>();
 
@@ -53,7 +56,7 @@ public class JTypoSquatting {
         }*/
         for (DomainName domainsArrayResult : domainsArrayResults) {
             try {
-                listOfDomains.append(domainsArrayResult.getAsHttpsUrl()).append('\n');
+                listOfDomains.add(domainsArrayResult.getAsHttpsUrl().toString());
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
@@ -84,7 +87,7 @@ public class JTypoSquatting {
         }
     }
 
-    private static void UpdateTLDList() {
+    private static void UpdateTLDList() throws RuntimeException, IOException {
         // TODO : secure file updload/update
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -100,8 +103,6 @@ public class JTypoSquatting {
         try {
             writer = new PrintWriter("TLD.txt", StandardCharsets.UTF_8);
             writer.print(response.body());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             assert writer != null;
             writer.close();
@@ -114,10 +115,18 @@ public class JTypoSquatting {
     }
 
     public String getListOfDomainsAsURL() {
-        return listOfDomains.toString();
+        StringBuilder listOfDomainsAsString = new StringBuilder();
+        listOfDomains.trimToSize();
+
+        for (int i=0;i<listOfDomains.size();i++)
+        {
+            listOfDomainsAsString.append(listOfDomains.get(i)+'\n');
+        }
+        return listOfDomainsAsString.toString();
     }
 
     public String getNumberOfDomains() {
-        return Integer.toString(listOfDomains.length());
+        listOfDomains.trimToSize();
+        return Integer.toString(listOfDomains.size());
     }
 }
