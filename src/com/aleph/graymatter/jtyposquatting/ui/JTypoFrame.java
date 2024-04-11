@@ -29,31 +29,40 @@ public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
         setTitle("Aleph TypoSquatting Tool");
         setMinimumSize(new Dimension(1024, 768));
 
-        this.jTextFieldInput = new JTextField("www.aleph-networks.eu");
+        JPanel northPanel = new JPanel();
+        jTextFieldInput = new JTextField("domain name formatted like www.xxx.yy");
+        jTextFieldInput.setSize(200, 20);
+        northPanel.add(new JLabel("domain name: "));
+        northPanel.add(jTextFieldInput);
 
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
+        this.jTextAreaConsole = new JTextArea();
+        jTextAreaConsole.setText("console");
+        jTextAreaConsole.setAutoscrolls(true);
+        southPanel.add(jTextAreaConsole);
         JButton jButton = new JButton("OK");
+        southPanel.add(jButton);
+
+
         jButton.addActionListener(this);
-        numberLabel = new JLabel("0");
+        numberLabel = new JLabel("");
 
         this.jTextAreaOutput = new JTextArea();
         jTextAreaOutput.setText("");
         jTextAreaOutput.setAutoscrolls(true);
-
-        this.jTextAreaConsole = new JTextArea();
-        jTextAreaConsole.setText("console");
-        jTextAreaConsole.setAutoscrolls(true);
 
 
         JScrollPane jScrollPane = new JScrollPane(jTextAreaOutput);
         jScrollPane.setPreferredSize(new Dimension(800, 600));
         jScrollPane.setWheelScrollingEnabled(true);
 
-        Panel contentPanel = new Panel();
+        JPanel contentPanel = new JPanel();
         contentPanel.add(jScrollPane, BorderLayout.CENTER);
-        contentPanel.add(jTextAreaConsole, BorderLayout.SOUTH);
+        contentPanel.add(southPanel, BorderLayout.SOUTH);
 
         add(contentPanel, BorderLayout.CENTER);
-        add(jTextFieldInput, BorderLayout.NORTH);
+        add(northPanel, BorderLayout.NORTH);
         add(jButton, BorderLayout.SOUTH);
         add(numberLabel, BorderLayout.WEST);
         super.addKeyListener(this);
