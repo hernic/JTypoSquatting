@@ -5,50 +5,50 @@ import com.aleph.graymatter.jtyposquatting.JTypoSquatting;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static javax.imageio.ImageIO.read;
 
-public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
+public class JTypoFrame extends JFrame {
 
     private final JTextField jTextFieldInput;
     private final JTextArea jTextAreaOutput;
-    private final JTextArea jTextAreaConsole;
-    private final JLabel numberLabel;
+    private final JTextField jTextFieldConsole;
 
     public JTypoFrame() throws IOException {
+        setVisible(false);
+
         setIconImage(read(new File("aleph_sg.jpg")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Aleph TypoSquatting Tool");
-        setMinimumSize(new Dimension(1024, 768));
+        setPreferredSize(new Dimension(1200, 800));
 
+        // North Panel
         JPanel northPanel = new JPanel();
         jTextFieldInput = new JTextField("domain name formatted like www.xxx.yy");
         jTextFieldInput.setSize(200, 20);
         northPanel.add(new JLabel("domain name: "));
         northPanel.add(jTextFieldInput);
 
+        //South Panel
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
-        this.jTextAreaConsole = new JTextArea();
-        jTextAreaConsole.setText("console");
-        jTextAreaConsole.setAutoscrolls(true);
-        southPanel.add(jTextAreaConsole);
+        jTextFieldConsole = new JTextField();
+
+        jTextFieldConsole.setText("");
+        jTextFieldConsole.setAutoscrolls(true);
+        jTextFieldConsole.setHorizontalAlignment(JTextField.CENTER);
+        southPanel.add(jTextFieldConsole);
         JButton jButton = new JButton("OK");
+        jButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         southPanel.add(jButton);
 
 
-        jButton.addActionListener(this);
-        numberLabel = new JLabel("");
-
-        this.jTextAreaOutput = new JTextArea();
+        jTextAreaOutput = new JTextArea();
         jTextAreaOutput.setText("");
         jTextAreaOutput.setAutoscrolls(true);
 
@@ -63,49 +63,63 @@ public class JTypoFrame extends JFrame implements ActionListener, KeyListener {
 
         add(contentPanel, BorderLayout.CENTER);
         add(northPanel, BorderLayout.NORTH);
-        add(jButton, BorderLayout.SOUTH);
-        add(numberLabel, BorderLayout.WEST);
-        super.addKeyListener(this);
+        add(southPanel, BorderLayout.SOUTH);
+
+        jButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                validateAction();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
         pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
     }
 
 
     private void validateAction() {
-        JTypoSquatting jTypoSquatting;
+        JTypoSquatting jTypoSquatting = null;
+
         try {
             jTypoSquatting = new JTypoSquatting(jTextFieldInput.getText());
         } catch (FileNotFoundException | InvalidDomainException exception) {
+            System.out.println(exception.getClass().toString());
             if (exception.getClass().toString().equals("java.io.FileNotFoundException")) {
-                this.jTextAreaConsole.setText("some files are missing");
-            } else {
-                this.jTextAreaConsole.setText("invalid domain name");
+                jTextFieldConsole.setForeground(Color.RED);
+                jTextFieldConsole.setText("some files are missing");
+            } else if (exception.getClass().toString().equals("class com.aleph.graymatter.jtyposquatting.InvalidDomainException")){
+                jTextFieldConsole.setForeground(Color.RED);
+                jTextFieldConsole.setText("invalid domain name");
             }
-            throw new RuntimeException(exception);
         }
-
-        jTextAreaOutput.setText("");
-        jTextAreaOutput.setText(jTypoSquatting.getListOfDomainsAsURL());
-        numberLabel.setText(jTypoSquatting.getNumberOfDomains());
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        validateAction();
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            validateAction();
+        finally {
+            if (jTypoSquatting!= null) {
+                jTextFieldConsole.setForeground(Color.BLACK);
+                jTextFieldConsole.setText("number of generated squatable domains: " + jTypoSquatting.getNumberOfDomains());
+                jTextAreaOutput.setText("");
+                jTextAreaOutput.setText(jTypoSquatting.getListOfDomainsAsURL());
+            }
         }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }

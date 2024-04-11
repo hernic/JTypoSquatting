@@ -26,7 +26,7 @@ public class JTypoSquatting {
         try {
             domainName = new DomainName(domain);
         } catch (InvalidDomainException e) {
-            throw new RuntimeException(e);
+            throw e;
         }
 
         //UpdateDDNSList();
