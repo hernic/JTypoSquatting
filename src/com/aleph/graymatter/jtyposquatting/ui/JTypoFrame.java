@@ -17,6 +17,7 @@ public class JTypoFrame extends JFrame {
     private final JTextField jTextFieldInput;
     private final JTextArea jTextAreaOutput;
     private final JTextField jTextFieldConsole;
+    private final JButton jOKButton;
 
     public JTypoFrame() throws IOException {
         setVisible(false);
@@ -43,9 +44,9 @@ public class JTypoFrame extends JFrame {
         jTextFieldConsole.setAutoscrolls(true);
         jTextFieldConsole.setHorizontalAlignment(JTextField.CENTER);
         southPanel.add(jTextFieldConsole);
-        JButton jButton = new JButton("OK");
-        jButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        southPanel.add(jButton);
+        jOKButton = new JButton("OK");
+        jOKButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        southPanel.add(jOKButton);
 
 
         jTextAreaOutput = new JTextArea();
@@ -65,7 +66,7 @@ public class JTypoFrame extends JFrame {
         add(northPanel, BorderLayout.NORTH);
         add(southPanel, BorderLayout.SOUTH);
 
-        jButton.addMouseListener(new MouseListener() {
+        jOKButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 validateAction();
