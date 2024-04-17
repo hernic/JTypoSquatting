@@ -32,8 +32,7 @@ public class JTypoSquatting {
         //UpdateDDNSList();
         try {
             UpdateTLDList();
-        }
-        catch(IOException ioe) {
+        } catch (IOException ioe) {
             System.err.println(ioe);
         }
 
@@ -118,9 +117,8 @@ public class JTypoSquatting {
         StringBuilder listOfDomainsAsString = new StringBuilder();
         listOfDomains.trimToSize();
 
-        for (int i=0;i<listOfDomains.size();i++)
-        {
-            listOfDomainsAsString.append(listOfDomains.get(i)+'\n');
+        for (int i = 0; i < listOfDomains.size(); i++) {
+            listOfDomainsAsString.append(listOfDomains.get(i) + '\n');
         }
         return listOfDomainsAsString.toString();
     }
