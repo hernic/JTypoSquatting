@@ -2,9 +2,18 @@
   <artifact type="jar" name="JTypoSquatting:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/JTypoSquatting_jar</output-path>
     <root id="archive" name="JTypoSquatting.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="JTypoSquatting" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-33.1.0-jre.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-33.1.0-jre.jar" path-in-jar="/" />
+      <element id="library" level="project" name="src" />
+      <element id="file-copy" path="$PROJECT_DIR$/aleph_sg.jpg" />
+      <element id="file-copy" path="$PROJECT_DIR$/common-misspellings.json" />
+      <element id="file-copy" path="$PROJECT_DIR$/dynamic-dns.json" />
+      <element id="file-copy" path="$PROJECT_DIR$/misp_warning_list.json" />
+      <element id="file-copy" path="$PROJECT_DIR$/TLD.txt" />
     </root>
   </artifact>
 </component>

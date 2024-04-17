@@ -3,9 +3,14 @@ package com.aleph.graymatter.jtyposquatting.ui;
 import com.aleph.graymatter.jtyposquatting.InvalidDomainException;
 import com.aleph.graymatter.jtyposquatting.JTypoSquatting;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,6 +22,10 @@ public class JTypoFrame extends JFrame {
     private final JTextField jTextFieldInput;
     private final JTextArea jTextAreaOutput;
     private final JTextField jTextFieldConsole;
+    private final JButton jOKButton;
+    private final JButton jCopyButton;
+    private ImageIcon copyIcon;
+
 
     public JTypoFrame() throws IOException {
         setVisible(false);
@@ -29,7 +38,7 @@ public class JTypoFrame extends JFrame {
 
         // North Panel
         JPanel northPanel = new JPanel();
-        jTextFieldInput = new JTextField("domain name formatted like www.xxx.yy");
+        jTextFieldInput = new JTextField("www.xxxxxxxxxxxxxxx.yy");
         jTextFieldInput.setSize(200, 20);
         northPanel.add(new JLabel("domain name: "));
         northPanel.add(jTextFieldInput);
@@ -43,15 +52,27 @@ public class JTypoFrame extends JFrame {
         jTextFieldConsole.setAutoscrolls(true);
         jTextFieldConsole.setHorizontalAlignment(JTextField.CENTER);
         southPanel.add(jTextFieldConsole);
-        JButton jButton = new JButton("OK");
-        jButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        southPanel.add(jButton);
+        jOKButton = new JButton("OK");
+        jOKButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
+        southPanel.add(jOKButton);
 
+        //East Panel
+        JPanel eastPanel = new JPanel();
+        jCopyButton = new JButton("");
+        try {
+            copyIcon = new ImageIcon(ImageIO.read(new File("copy-icon.png")));
+        } catch (IOException ioe) {
+            copyIcon = new ImageIcon();
+            ioe.printStackTrace();
+        }
+        jCopyButton.setIcon(copyIcon);
+        jCopyButton.setEnabled(true);
+        eastPanel.add(jCopyButton);
 
         jTextAreaOutput = new JTextArea();
         jTextAreaOutput.setText("");
         jTextAreaOutput.setAutoscrolls(true);
-
 
         JScrollPane jScrollPane = new JScrollPane(jTextAreaOutput);
         jScrollPane.setPreferredSize(new Dimension(800, 600));
@@ -64,11 +85,39 @@ public class JTypoFrame extends JFrame {
         add(contentPanel, BorderLayout.CENTER);
         add(northPanel, BorderLayout.NORTH);
         add(southPanel, BorderLayout.SOUTH);
+        add(eastPanel, BorderLayout.EAST);
 
-        jButton.addMouseListener(new MouseListener() {
+        jOKButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 validateAction();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        jCopyButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                copy();
             }
 
             @Override
@@ -108,18 +157,23 @@ public class JTypoFrame extends JFrame {
             if (exception.getClass().toString().equals("java.io.FileNotFoundException")) {
                 jTextFieldConsole.setForeground(Color.RED);
                 jTextFieldConsole.setText("some files are missing");
-            } else if (exception.getClass().toString().equals("class com.aleph.graymatter.jtyposquatting.InvalidDomainException")){
+            } else if (exception.getClass().toString().equals("class com.aleph.graymatter.jtyposquatting.InvalidDomainException")) {
                 jTextFieldConsole.setForeground(Color.RED);
                 jTextFieldConsole.setText("invalid domain name");
             }
-        }
-        finally {
-            if (jTypoSquatting!= null) {
+        } finally {
+            if (jTypoSquatting != null) {
                 jTextFieldConsole.setForeground(Color.BLACK);
                 jTextFieldConsole.setText("number of generated squatable domains: " + jTypoSquatting.getNumberOfDomains());
                 jTextAreaOutput.setText("");
                 jTextAreaOutput.setText(jTypoSquatting.getListOfDomainsAsURL());
             }
         }
+    }
+
+    private void copy() {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection data = new StringSelection(jTextAreaOutput.getText());
+        clipboard.setContents(data, data);
     }
 }
