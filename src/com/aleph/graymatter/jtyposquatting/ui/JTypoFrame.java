@@ -38,7 +38,7 @@ public class JTypoFrame extends JFrame {
 
         // North Panel
         JPanel northPanel = new JPanel();
-        jTextFieldInput = new JTextField("domain name formatted like www.xxx.yy");
+        jTextFieldInput = new JTextField("www.xxx.yy");
         jTextFieldInput.setSize(200, 20);
         northPanel.add(new JLabel("domain name: "));
         northPanel.add(jTextFieldInput);
