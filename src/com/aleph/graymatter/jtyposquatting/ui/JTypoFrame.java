@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -66,8 +67,7 @@ public class JTypoFrame extends JFrame {
             ioe.printStackTrace();
         }
         jCopyButton.setIcon(copyIcon);
-        // not yet well implemented
-        jCopyButton.setEnabled(false);
+        jCopyButton.setEnabled(true);
         eastPanel.add(jCopyButton);
 
         jTextAreaOutput = new JTextArea();
@@ -173,21 +173,7 @@ public class JTypoFrame extends JFrame {
 
     private void copy() {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        TransferHandler transfertHandler = jTextAreaOutput.getTransferHandler();
-        transfertHandler.exportToClipboard(jTextAreaOutput, clipboard, TransferHandler.COPY);
-        Transferable contents = clipboard.getContents(null);
-
-        /*
-        System.out.println(contents.isDataFlavorSupported(DataFlavor.stringFlavor));
-
-        try {
-            System.out.println((String) clipboard.getContents(null).getTransferData(DataFlavor.stringFlavor));
-            System.out.println(clipboard.getContents(null).getTransferDataFlavors());
-        } catch (UnsupportedFlavorException ufe) {
-            System.err.println(ufe.getMessage());
-        } catch (IOException ioe) {
-            System.err.println(ioe.getMessage());
-        }
-         */
+        StringSelection data = new StringSelection(jTextAreaOutput.getText());
+        clipboard.setContents(data, data);
     }
 }
