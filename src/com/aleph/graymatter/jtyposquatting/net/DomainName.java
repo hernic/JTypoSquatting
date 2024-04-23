@@ -1,7 +1,6 @@
 package com.aleph.graymatter.jtyposquatting.net;
 
 import com.aleph.graymatter.jtyposquatting.InvalidDomainException;
-import com.google.common.net.InternetDomainName;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,57 +11,67 @@ public final class DomainName {
     private final String TLD;
 
     public DomainName(String domainName) throws InvalidDomainException {
-        if (!InternetDomainName.isValid(domainName) || domainName.indexOf('.') == -1) {
+        if (!isValidDomain(domainName)) {
             throw new InvalidDomainException(domainName + " is not valid");
         } else {
-            subDomain = getSubDomain(domainName);
-            domain = getDomainWithoutSubDomain(domainName);
-            TLD = getSuffix(domainName);
+            this.TLD = getSuffix(domainName);
+            String domainWithoutTLD = getDomainWithoutTLD(domainName);
+            this.domain = getDomainWithoutSubDomain(domainWithoutTLD);
+            this.subDomain = getSubDomain(domainWithoutTLD);
         }
     }
 
+    public static String getDomainWithoutSubDomainMinusTLD(final String domain) {
+        if (!haveSubDomain(domain)) {
+            return getDomainWithoutTLD(domain);
+        } else {
+            String domainWithoutTLD = getDomainWithoutTLD(domain);
+            return getDomainWithoutSubDomain(domainWithoutTLD);
+        }
+    }
+
+
+    private static boolean isValidDomain(String domainName) {
+        return domainName.contains(".") && domainName.indexOf('.') != domainName.length() - 1;
+    }
+
     public static boolean haveSubDomain(final String domain) {
-        return (domain.indexOf(".")) != (domain.lastIndexOf("."));
+        return domain.indexOf(".") != domain.lastIndexOf(".");
     }
 
     public static String getSubDomain(final String domain) {
-        if (DomainName.haveSubDomain(domain)) {
-            StringBuilder sb = new StringBuilder(DomainName.getDomainWithoutTLD(domain));
-            int idx = sb.lastIndexOf(".");
-            if (idx != -1)
-                sb.delete(idx, sb.length());
-            return sb.toString();
+        if (haveSubDomain(domain)) {
+            int inc_temp = domain.indexOf(".");
+            return domain.substring(0, inc_temp);
         } else {
             return "";
         }
     }
 
-    public static String getDomainWithoutSubDomainMinusTLD(final String domain) {
-        StringBuilder sb = new StringBuilder(getDomainWithoutSubDomain(domain));
-        String suffix = getSuffix(domain);
-        int start = sb.lastIndexOf(suffix) - 1;
-        int end = sb.lastIndexOf(suffix) - 1 + suffix.length() + 1;
-        sb.delete(start, end);
-        return sb.toString();
-    }
-
     public static String getDomainWithoutSubDomain(final String domain) {
-        StringBuilder sb = new StringBuilder(domain);
-        String subDomain = DomainName.getSubDomain(domain);
-        sb.delete(sb.indexOf(subDomain), subDomain.length() + 1);
-        return sb.toString();
+        if (!haveSubDomain(domain)) {
+            return domain;
+        } else {
+            return domain.substring(domain.indexOf(".") + 1);
+        }
     }
 
     public static String getDomainWithoutTLD(final String domain) {
-        StringBuilder sb = new StringBuilder(domain);
-        int idx = sb.lastIndexOf(DomainName.getSuffix(domain));
-        sb.delete(idx - 1, sb.length()); //-1 for removing the dot
-
-        return sb.toString();
+        int inc_temp = domain.lastIndexOf(".");
+        if (inc_temp == -1) {
+            return domain;
+        } else {
+            return domain.substring(0, inc_temp);
+        }
     }
 
     public static String getSuffix(String domain) {
-        return domain.substring(domain.lastIndexOf(".") + 1);
+        int inc_temp = domain.lastIndexOf(".");
+        if (inc_temp == -1) {
+            return "";
+        } else {
+            return domain.substring(inc_temp + 1);
+        }
     }
 
     public boolean haveSubDomain() {
@@ -86,6 +95,6 @@ public final class DomainName {
     }
 
     public String toString() {
-        return getSubDomain() + '.' + getDomain();
+        return (subDomain.isEmpty() ? "" : subDomain + ".") + domain + "." + TLD;
     }
 }
